@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //comentario
+
         ce.setOnClickListener(){
             datos=""
             datos2=""
