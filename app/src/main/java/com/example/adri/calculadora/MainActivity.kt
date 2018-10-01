@@ -107,6 +107,8 @@ class MainActivity : AppCompatActivity() {
                 screen.setText(datos)
             }
         }
+
+        //comentario
         ce.setOnClickListener(){
             datos=""
             datos2=""
