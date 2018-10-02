@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("SetTextI18n")
+
     fun calHex(){
         hexSum.setOnClickListener(){
             operacionHex="+"
