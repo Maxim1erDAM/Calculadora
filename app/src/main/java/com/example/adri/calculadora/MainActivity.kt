@@ -1,6 +1,5 @@
 package com.example.adri.calculadora
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,16 +13,21 @@ class MainActivity : AppCompatActivity() {
     var datos2=""
     var datos3: Long = 0
     var memoria=""
+    var memoriaHex=""
     var operacionHex=""
+    var datosHex=""
+    var datosHex2=""
+    var hexDec1: Long=0
+    var hexDec2: Long=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val orientation=getResources().getConfiguration().orientation
+        val orientation=resources.configuration.orientation
         if(orientation==Configuration.ORIENTATION_LANDSCAPE){
-            calHex();
+            calHex()
         }else{
-            calDec();
+            calDec()
         }
     }
 
@@ -36,37 +40,139 @@ class MainActivity : AppCompatActivity() {
         }
         var hexString=java.lang.Long.toHexString(datos3)
         resulText.text = hexString
+        datosHex= resulText.text.toString()
     }
 
     fun hex2dec(hex: String): Long {
         return parseLong(hex,16)
     }
 
-
-
     fun calHex(){
-        hexSum.setOnClickListener(){
+        b0Hex.setOnClickListener(){
+            datosHex+="0"
+            resulText.setText(datosHex)
+        }
+        b1Hex.setOnClickListener(){
+            datosHex+="1"
+            resulText.setText(datosHex)
+
+        }
+        b2Hex.setOnClickListener(){
+            datosHex+="2"
+            resulText.setText(datosHex)
+        }
+        b3Hex.setOnClickListener(){
+            datosHex+="3"
+            resulText.setText(datosHex)
+        }
+        b4Hex.setOnClickListener(){
+            datosHex+="4"
+            resulText.setText(datosHex)
+        }
+        b5Hex.setOnClickListener(){
+            datosHex+="5"
+            resulText.setText(datosHex)
+        }
+        b6Hex.setOnClickListener(){
+            datosHex+="6"
+            resulText.setText(datosHex)
+        }
+        b7Hex.setOnClickListener(){
+            datosHex+="7"
+            resulText.setText(datosHex)
+        }
+        b8Hex.setOnClickListener(){
+            datosHex+="8"
+            resulText.setText(datosHex)
+        }
+        b9Hex.setOnClickListener(){
+            datosHex+="9"
+            resulText.setText(datosHex)
+        }
+        bA.setOnClickListener {
+            datosHex+="A"
+            resulText.setText(datosHex)
+        }
+        bB.setOnClickListener {
+            datosHex+="B"
+            resulText.setText(datosHex)
+        }
+        bC.setOnClickListener {
+            datosHex+="C"
+            resulText.setText(datosHex)
+        }
+        bD.setOnClickListener {
+            datosHex+="D"
+            resulText.setText(datosHex)
+        }
+        bE.setOnClickListener {
+            datosHex+="E"
+            resulText.setText(datosHex)
+        }
+        bF.setOnClickListener {
+            datosHex+="F"
+            resulText.setText(datosHex)
+        }
+        sumHex.setOnClickListener(){
             operacionHex="+"
-            execHex(hex2dec(num1text.text.toString()), hex2dec(num2text.text.toString()))
-
+            datosHex2=datosHex
+            datosHex=""
+            resulText.text=datosHex2+"+"
         }
-        hexRes.setOnClickListener(){
+        resHex.setOnClickListener(){
             operacionHex="-"
-            execHex(hex2dec(num1text.text.toString()), hex2dec(num2text.text.toString()))
-
+            datosHex2=datosHex
+            datosHex=""
+            resulText.text=datosHex2+"-"
         }
-        hexMul.setOnClickListener(){
+        mulHex.setOnClickListener(){
             operacionHex="x"
-            execHex(hex2dec(num1text.text.toString()), hex2dec(num2text.text.toString()))
+            datosHex2=datosHex
+            datosHex=""
+            resulText.text=datosHex2+"x"
         }
-        hexDiv.setOnClickListener() {
+        divHex.setOnClickListener() {
             operacionHex="/"
+            datosHex2=datosHex
+            datosHex=""
+            resulText.text=datosHex2+"/"
+        }
+        memHex.setOnClickListener(){
+            if(memoriaHex=="") {
+                memoriaHex = resulText.text.toString()
+            }else{
+                resulText.text = memoriaHex
+            }
+        }
+        memPlusHex.setOnClickListener(){
+            datosHex2=memoriaHex
+            resulText.text = datosHex2+"+"
+            operacionHex="+"
+        }
+        delHex.setOnClickListener(){
+            if(resulText.text.toString()==""){
+                datosHex=""
+                resulText.setText(datosHex)
+            }else {
+                var datBorrHex = resulText.text
+                val ultHex = datBorrHex.length
+                var newDatHex = datBorrHex.substring(0, ultHex - 1)
+                datosHex = newDatHex
+                resulText.setText(datosHex)
+            }
+        }
+        ceHex.setOnClickListener(){
+            datosHex=""
+            datosHex2=""
+            resulText.setText(datosHex)
+        }
+        execHex.setOnClickListener(){
+            if(datosHex2=="") datosHex2="0"
             try {
-                execHex(hex2dec(num1text.text.toString()), hex2dec(num2text.text.toString()))
-            }catch(e: ArithmeticException){
+                execHex(hex2dec(datosHex2),hex2dec(datosHex))
+            }catch (e: ArithmeticException){
                 resulText.text="No se puede dividir por 0"
             }
-
         }
     }
 
