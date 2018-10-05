@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
             "/" -> datos3=(hex1/hex2)
         }
         var hexString=java.lang.Long.toHexString(datos3)
-        resulText.text = hexString
+        resulText.text = hexString.toUpperCase()
         datosHex= resulText.text.toString()
     }
 
